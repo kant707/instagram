@@ -126,8 +126,12 @@ body {
   border: 2px solid #007bff;
 }
 
+.profile-picture img {
+  border-radius: 50%;
+}
+
 /* Styles for the story overlay */
-.story-overlay {
+.story-player-overlay {
   position: fixed;
   top: 0;
   left: 0;
