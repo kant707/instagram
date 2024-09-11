@@ -69,6 +69,7 @@ body {
 
 .main-wrapper {
   height: 100vh;
+  position: relative;
 }
 .main-header {
   margin-bottom: 10px;
@@ -88,4 +89,106 @@ body {
 .profile-wrap img {
   border-radius: 50%;
   border: 3px solid #fff;
+}
+.story-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.profile-pictures-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  overflow-x: scroll;
+  padding: 10px;
+  background-color: #f8f9fa;
+}
+
+.profile-pictures-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+.profile-picture {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 0 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.3s ease;
+}
+
+.profile-picture:hover {
+  border: 2px solid #007bff;
+}
+
+/* Styles for the story overlay */
+.story-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.story-image {
+  max-width: 90%;
+  max-height: 70%;
+  object-fit: cover;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Progress bars container */
+.progress-bars-container {
+  display: flex;
+  width: 90%;
+  margin: 20px 0;
+  justify-content: space-between;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 4px;
+  background-color: #ddd;
+  margin-right: 5px;
+  transition: width 5s linear;
+  border-radius: 2px;
+}
+
+.progress-bar.active {
+  background-color: #007bff;
+}
+
+.close-button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #dc3545;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  background-color: #c82333;
 }

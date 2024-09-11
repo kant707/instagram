@@ -2,7 +2,7 @@ import styled from "styled-components";
 import StoryItem from "./StoryItem";
 
 interface StoryListProps {
-  stories: { id: number; image: string }[];
+  stories: { id: number; profilePic: string; stories: [] }[];
   onStorySelect: (id: number) => void;
 }
 
@@ -12,7 +12,7 @@ const StoryList: React.FC<StoryListProps> = ({ stories, onStorySelect }) => {
       {stories.map((story) => (
         <StoryItem
           key={story.id}
-          image={story.image}
+          image={story.profilePic}
           onClick={() => onStorySelect(story.id)}
         />
       ))}

@@ -2,56 +2,64 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import StoryList from "./components/StoryList";
-import StoryPlayer from "./components/StoryPlayer";
 
-const storiesData = [
-  { id: 1, image: "/profiles/pic1.jpg" },
-  { id: 2, image: "/profiles/pic2.jpg" },
-  { id: 3, image: "/profiles/pic3.jpg" },
-  { id: 4, image: "/profiles/pic4.jpg" },
-  { id: 5, image: "/profiles/pic5.jpg" },
-];
+import StoryItem from "./components/StoryItem";
+import StoryPlayer from "./components/StoryPlayer";
+import { fetchStories } from "./utils/api";
 
 const Home = () => {
-  const [activeStoryId, setActiveStoryId] = useState<number | null>(null);
+  const [storiesData, setStoriesData] = useState<
+    { id: number; profilePic: string; stories: string[] }[]
+  >([]);
+  const [activeUser, setActiveUser] = useState<number | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch stories on component mount
+  useEffect(() => {
+    const getStories = async () => {
+      try {
+        const data = await fetchStories();
+        setStoriesData(data);
+        setLoading(false); // Set loading to false when data is loaded
+      } catch (error) {
+        console.error("Error fetching stories:", error);
+      }
+    };
+
+    getStories();
+  }, []);
 
   const handleStorySelect = (id: number) => {
-    setActiveStoryId(id);
+    setActiveUser(id);
   };
 
-  const handleNextStory = () => {
-    if (activeStoryId !== null) {
-      const nextStoryId = (activeStoryId % storiesData.length) + 1;
-      setActiveStoryId(nextStoryId);
-    }
+  const handleCloseOverlay = () => {
+    setActiveUser(null); // Close the overlay
   };
 
-  const handlePreviousStory = () => {
-    if (activeStoryId !== null) {
-      const prevStoryId =
-        activeStoryId === 1 ? storiesData.length : activeStoryId - 1;
-      setActiveStoryId(prevStoryId);
-    }
-  };
+  if (loading) {
+    return <div>Loading...</div>; // Optionally handle loading state
+  }
+
   return (
-    <div className="main-wrapper">
-      <header className="main-header flex flex-col gap-4">
-        <Image
-          src="/icons/instagram_logo.svg"
-          width={102}
-          height={28}
-          alt="Instagram logo"
-        />
-      </header>
-      {activeStoryId === null ? (
-        <StoryList stories={storiesData} onStorySelect={handleStorySelect} />
-      ) : (
+    <div>
+      <div className="profile-pictures-container">
+        {storiesData.map((user) => (
+          <StoryItem
+            key={user.id}
+            profilePic={user.profilePic}
+            onClick={() => handleStorySelect(user.id)}
+          />
+        ))}
+      </div>
+
+      {activeUser !== null && (
         <StoryPlayer
-          stories={storiesData}
-          activeStoryId={activeStoryId}
-          onNext={handleNextStory}
-          onPrevious={handlePreviousStory}
+          stories={
+            storiesData.find((user) => user.id === activeUser)?.stories || []
+          }
+          onClose={handleCloseOverlay}
+          onStoryChange={(index) => console.log("Story changed to", index)}
         />
       )}
     </div>
