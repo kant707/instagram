@@ -85,3 +85,7 @@ body {
   background: linear-gradient(to right, red, purple);
   padding: 3px;
 }
+.profile-wrap img {
+  border-radius: 50%;
+  border: 3px solid #fff;
+}
