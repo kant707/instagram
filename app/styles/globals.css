@@ -261,9 +261,6 @@ body {
   right: 8px;
 }
 
-.close-button:hover {
-  background-color: #c82333;
-}
 .dynamic-content-box {
   margin-top: 20px;
   display: flex;
