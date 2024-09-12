@@ -11,7 +11,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ progress, active }) => {
         width: `${progress}%`,
         transition: "width 5s linear",
       }}
-    ></div>
+    >
+      <div className="progress-bar-inner"></div>
+    </div>
   );
 };
 

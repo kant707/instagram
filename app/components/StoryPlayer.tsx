@@ -56,18 +56,20 @@ const StoryPlayer: React.FC<StoryPlayerProps> = ({
 
   return (
     <div className="story-player-overlay" onClick={handleClick}>
-      <div className="progress-bars-container">
-        {stories.map((_, index) => (
-          <ProgressBar
-            key={index}
-            progress={index === currentStoryIndex ? progress : 0}
-            active={index === currentStoryIndex}
-          />
-        ))}
+      <div className="action-box">
+        <div className="progress-bars-container">
+          {stories.map((_, index) => (
+            <ProgressBar
+              key={index}
+              progress={index === currentStoryIndex ? progress : 0}
+              active={index === currentStoryIndex}
+            />
+          ))}
+        </div>
       </div>
-      <img src={stories[currentStoryIndex]} alt="Story" />
+      <img src={stories[currentStoryIndex]} className="story-pic" alt="Story" />
       <button className="close-button" onClick={onClose}>
-        Close
+        <img src="/icons/close.svg" alt="close" />
       </button>
     </div>
   );

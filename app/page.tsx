@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import StoryItem from "./components/StoryItem";
 import StoryPlayer from "./components/StoryPlayer";
 import { fetchStories } from "./utils/api";
+import Header from "./components/Header";
 
 const Home = () => {
   const [storiesData, setStoriesData] = useState<
@@ -42,7 +43,8 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <div className="relative mx-auto flex max-w-sm flex-col py-6 pb-6">
+      <Header />
       <div className="profile-pictures-container">
         {storiesData.map((user) => (
           <StoryItem

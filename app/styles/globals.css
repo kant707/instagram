@@ -101,7 +101,7 @@ body {
 
 .profile-pictures-container {
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   align-items: center;
   overflow-x: scroll;
   padding: 10px;
@@ -113,6 +113,8 @@ body {
 }
 
 .profile-picture {
+  flex-basis: 60px;
+  flex-shrink: 0;
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -120,6 +122,18 @@ body {
   cursor: pointer;
   border: 2px solid transparent;
   transition: border 0.3s ease;
+  background: linear-gradient(to right, red, purple);
+  position: relative;
+}
+.profile-picture::before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  background: #c2c2c2;
+  position: absolute;
+  z-index: 0;
+  display: flex;
+  border-radius: 50%;
 }
 
 .profile-picture:hover {
@@ -128,21 +142,37 @@ body {
 
 .profile-picture img {
   border-radius: 50%;
+  border: 2px solid #fff;
+  position: relative;
 }
 
 /* Styles for the story overlay */
 .story-player-overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+}
+.story-player-overlay::before {
+  content: "";
+  background: #000;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  z-index: -1;
+}
+.story-player-overlay .story-pic {
+  max-width: 100%;
 }
 
 .story-image {
@@ -160,39 +190,76 @@ body {
     opacity: 1;
   }
 }
-
+.action-box {
+  background-image: linear-gradient(
+    180deg,
+    rgba(38, 38, 38, 0.8) 0%,
+    rgba(38, 38, 38, 0) 100%
+  );
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 58px;
+}
 /* Progress bars container */
 .progress-bars-container {
   display: flex;
-  width: 90%;
-  margin: 20px 0;
+  column-gap: 2px;
   justify-content: space-between;
+  width: 100%;
+  height: 10px;
+  padding: 8px 8px 0px;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .progress-bar {
   flex: 1;
   height: 4px;
-  background-color: #ddd;
-  margin-right: 5px;
+  background-color: #555;
   transition: width 5s linear;
   border-radius: 2px;
+  filter: drop-shadow(rgb(34, 34, 34) 0px 1px 8px);
 }
 
 .progress-bar.active {
   background-color: #007bff;
 }
-
+.progress-bar.active .progress-bar-inner {
+  backface-visibility: hidden;
+  border-radius: 2px;
+  height: 4px;
+  width: 100%;
+  background: #fff;
+  transition: width 5s ease-in-out;
+  animation: expand 5s none;
+}
+@keyframes expand {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 100%;
+  }
+}
 .close-button {
-  margin-top: 10px;
-  padding: 5px 10px;
-  font-size: 14px;
-  color: #fff;
-  background-color: #dc3545;
+  background-color: transparent;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
+  padding: 8px;
+  position: absolute;
+  top: 20px;
+  right: 8px;
 }
 
 .close-button:hover {
   background-color: #c82333;
+}
+.max-w-sm {
+  max-width: 500px;
 }
