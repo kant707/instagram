@@ -74,6 +74,11 @@ body {
 .main-header {
   padding: 8px 16px;
 }
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .profile-wrap {
   border-radius: 50%;
   width: 80px;

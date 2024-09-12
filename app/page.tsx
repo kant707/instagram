@@ -39,7 +39,13 @@ const Home = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>; // Optionally handle loading state
+    return (
+      <div className="loader">
+        <div className="loader-inner">
+          <Image src="/icons/loader.svg" height={64} width={64} alt="loader" />
+        </div>
+      </div>
+    ); // Optionally handle loading state
   }
 
   return (
