@@ -119,8 +119,8 @@ body {
 .profile-picture {
   flex-basis: 60px;
   flex-shrink: 0;
-  width: 60px;
-  height: 60px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   margin: 0 8px;
   cursor: pointer;
@@ -149,7 +149,15 @@ body {
   border: 2px solid #fff;
   position: relative;
 }
-
+.profile-user-name {
+  font-size: 14px;
+  line-height: 1.2;
+  margin-top: 8px;
+  width: 76px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 /* Styles for the story overlay */
 .story-player-overlay {
   position: absolute;
