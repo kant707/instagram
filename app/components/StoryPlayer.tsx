@@ -66,6 +66,27 @@ const StoryPlayer: React.FC<StoryPlayerProps> = ({
             />
           ))}
         </div>
+        <div className="dynamic-content-box">
+          <div className="flex">
+            <div className="profile-picture" onClick={onClose}>
+              <img src="/profiles/pic1.jpg" alt="User profile picture" />
+            </div>
+            <div className="details">
+              <div className="row-1 flex col-gap-4">
+                <span className="user-name">Ram Krinshna</span>
+                <span className="story-time">10m</span>
+              </div>
+              <div className="row-2">
+                <img
+                  src="/icons/camera.svg"
+                  alt="camera icon"
+                  className="source-icon"
+                />
+                <span className="story-text">At Coding Cafe</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <img src={stories[currentStoryIndex]} className="story-pic" alt="Story" />
       <button className="close-button" onClick={onClose}>

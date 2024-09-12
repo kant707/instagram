@@ -72,8 +72,7 @@ body {
   position: relative;
 }
 .main-header {
-  margin-bottom: 10px;
-  padding: 10px 15px;
+  padding: 8px 16px;
 }
 .profile-wrap {
   border-radius: 50%;
@@ -118,7 +117,7 @@ body {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  margin: 0 10px;
+  margin: 0 8px;
   cursor: pointer;
   border: 2px solid transparent;
   transition: border 0.3s ease;
@@ -259,6 +258,34 @@ body {
 
 .close-button:hover {
   background-color: #c82333;
+}
+.dynamic-content-box {
+  margin-top: 20px;
+  display: flex;
+  color: #e3e3e3;
+}
+.dynamic-content-box .profile-picture {
+  margin-right: 8px;
+  height: 32px;
+  width: 32px;
+  flex-basis: 32px;
+}
+.details {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  line-height: 1.2;
+}
+.details .row-1,
+.details .row-2 {
+  display: flex;
+  column-gap: 4px;
+}
+.details .row-2 {
+  font-size: 12px;
+}
+.details .story-time {
+  color: #c8c8c8;
 }
 .max-w-sm {
   max-width: 500px;

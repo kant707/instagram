@@ -43,7 +43,7 @@ const Home = () => {
   }
 
   return (
-    <div className="relative mx-auto flex max-w-sm flex-col py-6 pb-6">
+    <div className="relative mx-auto flex max-w-sm flex-col pb-6">
       <Header />
       <div className="profile-pictures-container">
         {storiesData.map((user) => (

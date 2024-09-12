@@ -6,8 +6,8 @@ const Header = () => {
       <img
         className="brand-logo"
         src="/icons/instagram_logo.svg"
-        height={30}
-        width={120}
+        height={40}
+        width={112}
         alt="instagram logo"
       />
     </header>
