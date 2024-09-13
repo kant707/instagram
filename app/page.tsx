@@ -15,7 +15,7 @@ const Home = () => {
   }>({ id: 0, stories: [] });
   const [usersData, setUsersData] = useState<
     { userId: number; userName: string; profilePic: string }[]
-  >([] || undefined);
+  >([]);
   const [activeUser, setActiveUser] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -87,9 +87,15 @@ const Home = () => {
       {activeUser !== null && (
         <StoryPlayer
           userStories={storiesData}
-          userData={usersData.find((user) => user.userId === activeUser)}
+          userData={
+            usersData.find((user) => user.userId === activeUser) ?? {
+              userId: 0,
+              userName: "",
+              profilePic: "",
+            }
+          } // Default value to prevent undefined
           onClose={handleCloseOverlay}
-          onStoryChange={(index) => console.log("Story changed to", index)}
+          // onStoryChange={(index) => console.log("Story changed to", index)}
         />
       )}
     </div>

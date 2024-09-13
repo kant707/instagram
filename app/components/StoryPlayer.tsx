@@ -3,7 +3,7 @@ import ProgressBar from "./ProgressBar";
 
 interface StoryPlayerProps {
   userStories: { id: number; stories: string[] };
-  userData: { userId: string; profilePic: string; userName: string };
+  userData?: { userId: number; userName: string; profilePic: string };
   onClose: () => void;
   // onStoryChange: (index: number) => void;
 }
@@ -14,6 +14,9 @@ const StoryPlayer: React.FC<StoryPlayerProps> = ({
   onClose,
   // onStoryChange,
 }) => {
+  if (!userData) {
+    return null; // Or handle this case as needed
+  }
   const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const totalStories = userStories.stories.length;
