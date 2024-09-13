@@ -5,14 +5,14 @@ interface StoryPlayerProps {
   userStories: { id: number; stories: string[] };
   userData: { userId: string; profilePic: string; userName: string };
   onClose: () => void;
-  onStoryChange: (index: number) => void;
+  // onStoryChange: (index: number) => void;
 }
 
 const StoryPlayer: React.FC<StoryPlayerProps> = ({
   userStories,
   userData,
   onClose,
-  onStoryChange,
+  // onStoryChange,
 }) => {
   const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
   const [progress, setProgress] = useState(0);
@@ -47,7 +47,8 @@ const StoryPlayer: React.FC<StoryPlayerProps> = ({
     }
   };
 
-  const handleClick = (e: MouseEvent) => {
+  // const handleClick = (e: MouseEvent) => {
+  const handleClick = () => {
     const { clientX, innerWidth } = window;
     if (clientX < innerWidth / 2) {
       prevStory(); // Left click - show previous story

@@ -140,13 +140,13 @@ export const fetchStories = async () => {
     },
   ];
 };
-const userData = [
-  {
-    userId: 1,
-    userName: "Mike Todd",
-    profilePic: "profiles/pic1.jpg",
-  },
-];
+// const userData = [
+//   {
+//     userId: 1,
+//     userName: "Mike Todd",
+//     profilePic: "profiles/pic1.jpg",
+//   },
+// ];
 
 export const fetchUsers = async () => {
   return [
