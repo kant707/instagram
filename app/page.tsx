@@ -9,20 +9,23 @@ import { fetchStories, fetchUsers } from "./utils/api";
 import Header from "./components/Header";
 
 const Home = () => {
-  const [storiesData, setStoriesData] = useState<
-    { id: number; profilePic: string; stories: string[] }[]
-  >([]);
+  const [storiesData, setStoriesData] = useState<{
+    id: number;
+    stories: string[];
+  }>({ id: 0, stories: [] });
   const [usersData, setUsersData] = useState<
     { userId: number; userName: string; profilePic: string }[]
-  >([]);
+  >([] || undefined);
   const [activeUser, setActiveUser] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
 
   // Fetch stories on component mount
-  const getStories = async () => {
+  const getStories = async (id: number) => {
     try {
       const data = await fetchStories();
-      setStoriesData(data);
+      const userStoryData = data?.find((user) => user.id === id);
+      console.log({ userStoryData });
+      setStoriesData(userStoryData);
       setLoading(false); // Set loading to false when data is loaded
     } catch (error) {
       console.error("Error fetching stories:", error);
@@ -39,11 +42,12 @@ const Home = () => {
   };
   useEffect(() => {
     getUsers();
-    getStories();
+    // getStories();
   }, []);
 
   const handleStorySelect = (id: number) => {
     setActiveUser(id);
+    getStories(id);
   };
 
   const handleCloseOverlay = () => {
@@ -54,7 +58,13 @@ const Home = () => {
     return (
       <div className="loader">
         <div className="loader-inner">
-          <Image src="/icons/loader.svg" height={64} width={64} alt="loader" />
+          <Image
+            src="/icons/loader.svg"
+            height={64}
+            width={64}
+            alt="loader"
+            priority
+          />
         </div>
       </div>
     ); // Optionally handle loading state
@@ -76,9 +86,7 @@ const Home = () => {
 
       {activeUser !== null && (
         <StoryPlayer
-          stories={
-            storiesData.find((user) => user.id === activeUser)?.stories || []
-          }
+          userStories={storiesData}
           userData={usersData.find((user) => user.userId === activeUser)}
           onClose={handleCloseOverlay}
           onStoryChange={(index) => console.log("Story changed to", index)}

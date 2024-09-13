@@ -2,21 +2,21 @@ import { useState, useEffect } from "react";
 import ProgressBar from "./ProgressBar";
 
 interface StoryPlayerProps {
-  stories: string[];
+  userStories: { id: number; stories: string[] };
   userData: { userId: string; profilePic: string; userName: string };
   onClose: () => void;
   onStoryChange: (index: number) => void;
 }
 
 const StoryPlayer: React.FC<StoryPlayerProps> = ({
-  stories,
+  userStories,
   userData,
   onClose,
   onStoryChange,
 }) => {
   const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
   const [progress, setProgress] = useState(0);
-  const totalStories = stories.length;
+  const totalStories = userStories.stories.length;
 
   // Automatically change story after 5 seconds
   useEffect(() => {
@@ -60,7 +60,7 @@ const StoryPlayer: React.FC<StoryPlayerProps> = ({
     <div className="story-player-overlay" onClick={handleClick}>
       <div className="action-box">
         <div className="progress-bars-container">
-          {stories.map((_, index) => (
+          {userStories.stories.map((_, index) => (
             <ProgressBar
               key={index}
               progress={index === currentStoryIndex ? progress : 0}
@@ -90,7 +90,11 @@ const StoryPlayer: React.FC<StoryPlayerProps> = ({
           </div>
         </div>
       </div>
-      <img src={stories[currentStoryIndex]} className="story-pic" alt="Story" />
+      <img
+        src={userStories.stories[currentStoryIndex]}
+        className="story-pic"
+        alt="Story"
+      />
       <button className="close-button" onClick={onClose}>
         <img src="/icons/close.svg" alt="close" />
       </button>
