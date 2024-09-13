@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import ProgressBar from "./ProgressBar";
-import { profile } from "console";
 
 interface StoryPlayerProps {
   stories: string[];
