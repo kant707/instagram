@@ -140,6 +140,69 @@ export const fetchStories = async () => {
     },
   ];
 };
+const userData = [
+  {
+    userId: 1,
+    userName: "Mike Todd",
+    profilePic: "profiles/pic1.jpg",
+  },
+];
+
+export const fetchUsers = async () => {
+  return [
+    {
+      userId: 1,
+      userName: "Lisa Brown",
+      profilePic: "profiles/pic1.jpg",
+    },
+    {
+      userId: 2,
+      userName: "Bruce Will",
+      profilePic: "profiles/pic2.jpg",
+    },
+    {
+      userId: 3,
+      userName: "Anne Hathaway",
+      profilePic: "profiles/pic3.jpg",
+    },
+    {
+      userId: 4,
+      userName: "Mike Todd",
+      profilePic: "profiles/pic4.jpg",
+    },
+    {
+      userId: 5,
+      userName: "Katharine Hepburn",
+      profilePic: "profiles/pic5.jpg",
+    },
+    {
+      userId: 6,
+      userName: "Mark Davis",
+      profilePic: "profiles/pic6.jpg",
+    },
+    {
+      userId: 7,
+      userName: "Sebastian Harrison",
+      profilePic: "profiles/pic7.jpg",
+    },
+    {
+      userId: 8,
+      userName: "Eva Green",
+      profilePic: "profiles/pic8.jpg",
+    },
+    {
+      userId: 9,
+      userName: "Max Ford",
+      profilePic: "profiles/pic9.jpg",
+    },
+    {
+      userId: 10,
+      userName: "Isabella Fitzgerald",
+      profilePic: "profiles/pic10.jpg",
+    },
+  ];
+};
+
 // export const fetchStories = async () => {
 //   return [
 //     { id: 1, image: '/stories/story1.jpg' },

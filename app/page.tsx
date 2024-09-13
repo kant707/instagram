@@ -5,28 +5,40 @@ import { useEffect, useState } from "react";
 
 import StoryItem from "./components/StoryItem";
 import StoryPlayer from "./components/StoryPlayer";
-import { fetchStories } from "./utils/api";
+import { fetchStories, fetchUsers } from "./utils/api";
 import Header from "./components/Header";
 
 const Home = () => {
   const [storiesData, setStoriesData] = useState<
     { id: number; profilePic: string; stories: string[] }[]
   >([]);
+  const [usersData, setUsersData] = useState<
+    { userId: number; userName: string; profilePic: string }[]
+  >([]);
   const [activeUser, setActiveUser] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
 
   // Fetch stories on component mount
+  const getStories = async () => {
+    try {
+      const data = await fetchStories();
+      setStoriesData(data);
+      setLoading(false); // Set loading to false when data is loaded
+    } catch (error) {
+      console.error("Error fetching stories:", error);
+    }
+  };
+  const getUsers = async () => {
+    try {
+      const data = await fetchUsers();
+      setUsersData(data);
+      setLoading(false); // Set loading to false when data is loaded
+    } catch (error) {
+      console.error("Error fetching stories:", error);
+    }
+  };
   useEffect(() => {
-    const getStories = async () => {
-      try {
-        const data = await fetchStories();
-        setStoriesData(data);
-        setLoading(false); // Set loading to false when data is loaded
-      } catch (error) {
-        console.error("Error fetching stories:", error);
-      }
-    };
-
+    getUsers();
     getStories();
   }, []);
 
@@ -52,11 +64,12 @@ const Home = () => {
     <div className="relative mx-auto flex max-w-sm flex-col pb-6">
       <Header />
       <div className="profile-pictures-container">
-        {storiesData.map((user) => (
+        {usersData.map((user) => (
           <StoryItem
-            key={user.id}
+            key={user.userId}
             profilePic={user.profilePic}
-            onClick={() => handleStorySelect(user.id)}
+            userName={user.userName}
+            onClick={() => handleStorySelect(user.userId)}
           />
         ))}
       </div>
