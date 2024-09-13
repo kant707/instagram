@@ -47,7 +47,9 @@ const StoryPlayer: React.FC<StoryPlayerProps> = ({
     }
   };
 
-  const handleClick: MouseEventHandler<HTMLDivElement> = (e: any) => {
+  const handleClick: MouseEventHandler<HTMLDivElement> = (
+    e: MouseEvent<HTMLDivElement>
+  ) => {
     // const handleClick = () => {
     const { clientX } = e;
     const { innerWidth } = window;
