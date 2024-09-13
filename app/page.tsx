@@ -79,6 +79,7 @@ const Home = () => {
           stories={
             storiesData.find((user) => user.id === activeUser)?.stories || []
           }
+          userData={usersData.find((user) => user.userId === activeUser)}
           onClose={handleCloseOverlay}
           onStoryChange={(index) => console.log("Story changed to", index)}
         />
