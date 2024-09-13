@@ -47,9 +47,10 @@ const StoryPlayer: React.FC<StoryPlayerProps> = ({
     }
   };
 
-  // const handleClick = (e: MouseEvent) => {
-  const handleClick = () => {
-    const { clientX, innerWidth } = window;
+  const handleClick = (e: MouseEvent) => {
+    // const handleClick = () => {
+    const { clientX } = e;
+    const { innerWidth } = window;
     if (clientX < innerWidth / 2) {
       prevStory(); // Left click - show previous story
     } else {
