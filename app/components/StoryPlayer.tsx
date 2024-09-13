@@ -14,9 +14,6 @@ const StoryPlayer: React.FC<StoryPlayerProps> = ({
   onClose,
   // onStoryChange,
 }) => {
-  if (!userData) {
-    return null; // Or handle this case as needed
-  }
   const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const totalStories = userStories.stories.length;
@@ -78,11 +75,11 @@ const StoryPlayer: React.FC<StoryPlayerProps> = ({
         <div className="dynamic-content-box">
           <div className="flex">
             <div className="profile-picture" onClick={onClose}>
-              <img src={userData.profilePic} alt="User profile picture" />
+              <img src={userData?.profilePic} alt="User profile picture" />
             </div>
             <div className="details">
               <div className="row-1 flex col-gap-4">
-                <span className="user-name">{userData.userName}</span>
+                <span className="user-name">{userData?.userName}</span>
                 <span className="story-time">10m</span>
               </div>
               <div className="row-2">
