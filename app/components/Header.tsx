@@ -7,8 +7,8 @@ const Header = () => {
     <header className="main-header">
       <Link href={"/"} className="flex">
         <Image
-          className="brand-log"
-          src="/icons/instagramlogo.svg"
+          className="brand-logo"
+          src="/icons/instagramlogo.png"
           height={40}
           width={112}
           alt="instagram logo"
