@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, MouseEventHandler } from "react";
 import ProgressBar from "./ProgressBar";
 
 interface StoryPlayerProps {
@@ -59,7 +59,10 @@ const StoryPlayer: React.FC<StoryPlayerProps> = ({
   };
 
   return (
-    <div className="story-player-overlay" onClick={handleClick}>
+    <div
+      className="story-player-overlay"
+      onClick={handleClick as MouseEventHandler<HTMLDivElement>}
+    >
       <div className="action-box">
         <div className="progress-bars-container">
           {userStories.stories.map((_, index) => (
