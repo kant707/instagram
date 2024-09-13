@@ -23,7 +23,10 @@ const Home = () => {
   const getStories = async (id: number) => {
     try {
       const data = await fetchStories();
-      const userStoryData = data?.find((user) => user.id === id);
+      const userStoryData = data?.find((user) => user.id === id) || {
+        id: 0,
+        stories: [],
+      };
       console.log({ userStoryData });
       setStoriesData(userStoryData);
       setLoading(false); // Set loading to false when data is loaded
