@@ -47,7 +47,7 @@ const StoryPlayer: React.FC<StoryPlayerProps> = ({
     }
   };
 
-  const handleClick = (e: any) => {
+  const handleClick: MouseEventHandler<HTMLDivElement> = (e: any) => {
     // const handleClick = () => {
     const { clientX } = e;
     const { innerWidth } = window;
@@ -59,10 +59,7 @@ const StoryPlayer: React.FC<StoryPlayerProps> = ({
   };
 
   return (
-    <div
-      className="story-player-overlay"
-      onClick={handleClick as MouseEventHandler<HTMLDivElement>}
-    >
+    <div className="story-player-overlay" onClick={handleClick}>
       <div className="action-box">
         <div className="progress-bars-container">
           {userStories.stories.map((_, index) => (
