@@ -1,10 +1,10 @@
-interface StoryItemProps {
+interface UserItemProps {
   profilePic: string;
   userName: string;
   onClick: () => void;
 }
 
-const StoryItem: React.FC<StoryItemProps> = ({
+const UserItem: React.FC<UserItemProps> = ({
   profilePic,
   userName,
   onClick,
@@ -19,4 +19,4 @@ const StoryItem: React.FC<StoryItemProps> = ({
   );
 };
 
-export default StoryItem;
+export default UserItem;

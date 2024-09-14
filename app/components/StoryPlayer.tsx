@@ -1,22 +1,25 @@
 import { useState, useEffect, MouseEventHandler } from "react";
 import ProgressBar from "./ProgressBar";
+import type { Story, UserStory } from "../page";
 
 interface StoryPlayerProps {
-  userStories: { id: number; stories: string[] };
-  userData?: { userId: number; userName: string; profilePic: string };
+  stories: Story[];
+  userData: {
+    userId: UserStory["userId"];
+    userName: UserStory["userName"];
+    profilePic: UserStory["profilePic"];
+  };
   onClose: () => void;
-  // onStoryChange: (index: number) => void;
 }
 
 const StoryPlayer: React.FC<StoryPlayerProps> = ({
-  userStories,
+  stories,
   userData,
   onClose,
-  // onStoryChange,
 }) => {
   const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
   const [progress, setProgress] = useState(0);
-  const totalStories = userStories.stories.length;
+  const totalStories = stories.length;
 
   // Automatically change story after 5 seconds
   useEffect(() => {
@@ -50,7 +53,6 @@ const StoryPlayer: React.FC<StoryPlayerProps> = ({
   const handleClick: MouseEventHandler<HTMLDivElement> = (
     e: React.MouseEvent<HTMLDivElement>
   ) => {
-    // const handleClick = () => {
     const { clientX } = e;
     const { innerWidth } = window;
     if (clientX < innerWidth / 2) {
@@ -64,7 +66,7 @@ const StoryPlayer: React.FC<StoryPlayerProps> = ({
     <div className="story-player-overlay" onClick={handleClick}>
       <div className="action-box">
         <div className="progress-bars-container">
-          {userStories.stories.map((_, index) => (
+          {stories.map((_, index) => (
             <ProgressBar
               key={index}
               progress={index === currentStoryIndex ? progress : 0}
@@ -80,7 +82,9 @@ const StoryPlayer: React.FC<StoryPlayerProps> = ({
             <div className="details">
               <div className="row-1 flex col-gap-4">
                 <span className="user-name">{userData?.userName}</span>
-                <span className="story-time">10m</span>
+                <span className="story-time">
+                  {stories[currentStoryIndex].storyTime}
+                </span>
               </div>
               <div className="row-2">
                 <img
@@ -88,14 +92,16 @@ const StoryPlayer: React.FC<StoryPlayerProps> = ({
                   alt="camera icon"
                   className="source-icon"
                 />
-                <span className="story-text">At Coding Cafe</span>
+                <span className="story-text">
+                  {stories[currentStoryIndex].storyPlace}
+                </span>
               </div>
             </div>
           </div>
         </div>
       </div>
       <img
-        src={userStories.stories[currentStoryIndex]}
+        src={stories[currentStoryIndex].storySrc}
         className="story-pic"
         alt="Story"
       />
