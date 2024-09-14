@@ -240,7 +240,7 @@ body {
 }
 
 .progress-bar.active {
-  background-color: #007bff;
+  /* background-color: #007bff; */
 }
 .progress-bar.active .progress-bar-inner {
   backface-visibility: hidden;
