@@ -29,8 +29,9 @@ const Home = () => {
 
   const getData = async () => {
     try {
-      const apiUrl =
-        `${BASE_API_URL}/api/stories` || "http://localhost:3000/api/stories";
+      // const apiUrl =
+      //   `${BASE_API_URL}/api/stories` || "http://localhost:3000/api/stories";
+      const apiUrl = "/api/stories";
       const response = await fetch(apiUrl);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
