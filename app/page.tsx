@@ -27,7 +27,6 @@ const Home = () => {
         id: 0,
         stories: [],
       };
-      console.log({ userStoryData });
       setStoriesData(userStoryData);
       setLoading(false); // Set loading to false when data is loaded
     } catch (error) {
