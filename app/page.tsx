@@ -28,7 +28,9 @@ const Home = () => {
 
   const getData = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/stories");
+      const apiUrl =
+        process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api/stories";
+      const response = await fetch(apiUrl);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
