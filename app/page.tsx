@@ -29,12 +29,6 @@ const Home = () => {
 
   const getData = async () => {
     try {
-      // const apiUrl =
-      //   `${BASE_API_URL}/api/stories` || "http://localhost:3000/api/stories";
-      // const apiUrl = process.env.NEXT_PUBLIC_API_URL || "/api/stories";
-      // const apiUrl = process.env.NEXT_PUBLIC_API_URL
-      //   ? `${process.env.NEXT_PUBLIC_API_URL}/api/stories`
-      //   : "/api/stories";
       const apiUrl = "/api/stories";
       const response = await fetch(apiUrl);
       if (!response.ok) {
@@ -73,7 +67,7 @@ const Home = () => {
   }
 
   return (
-    <div className="relative mx-auto flex max-w-sm flex-col pb-6">
+    <div className="main-wrapper relative mx-auto flex max-w-sm flex-col">
       <Header />
       <div className="profile-pictures-container">
         {userStories.map((userStory) => (
