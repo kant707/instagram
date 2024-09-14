@@ -10,14 +10,13 @@
 // }
 
 export default async function handler(req, res) {
-  const storiesUrl = `${
-    process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
-  }/stories.json`;
-
+  const storiesUrl = "/stories.json"; // relative path to the stories.json file in the public folder
   try {
     const response = await fetch(storiesUrl);
+    if (!response.ok) {
+      throw new Error("Failed to fetch stories.json");
+    }
     const stories = await response.json();
-
     res.status(200).json(stories);
   } catch (error) {
     res.status(500).json({ error: "Failed to load stories" });
