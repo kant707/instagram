@@ -10,10 +10,10 @@
 // }
 
 export default async function handler(req, res) {
-  const storiesUrl = `${
-    process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
-  }/stories.json`;
-
+  // const storiesUrl = `${process.env.NEXT_PUBLIC_BASE_URL || ""}/stories.json`;
+  const storiesUrl = `${req.headers["x-forwarded-proto"]}://${req.headers.host}/stories.json`;
+  // console.log("http:", req.headers);
+  // console.log("storiesURL: ", storiesUrl);
   try {
     const response = await fetch(storiesUrl);
     const stories = await response.json();
