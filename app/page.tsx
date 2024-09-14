@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import UserItem from "./components/UserItem";
 import StoryPlayer from "./components/StoryPlayer";
 import Header from "./components/Header";
-import { BASE_API_URL } from "./utils/constant";
+// import { BASE_API_URL } from "./utils/constant";
 
 export interface Story {
   storySrc: string;
