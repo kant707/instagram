@@ -31,7 +31,7 @@ const Home = () => {
     try {
       // const apiUrl =
       //   `${BASE_API_URL}/api/stories` || "http://localhost:3000/api/stories";
-      const apiUrl = "/api/stories";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "/api/stories";
       const response = await fetch(apiUrl);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
